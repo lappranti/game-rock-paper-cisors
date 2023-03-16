@@ -1,0 +1,151 @@
+<div class="wrapper">
+  <div class="container">
+    <!--game-container-->
+    <div class="game-container">
+      <div
+        class="header"
+        [style.width]="windowSize <= 764 ? windowSize - 64 + 'px' : 700 + 'px'"
+      >
+        <div class="image-logo">
+          <img [src]="urlImageLogo" alt="" />
+        </div>
+        <div class="score-container">
+          <span>score</span>
+          <span>{{ score }}</span>
+        </div>
+      </div>
+      <div class="main-content">
+        <!--Panel Choice Debutant-->
+        <div
+          class="panel-choices panel-choices-debutant"
+          [style.width]="
+            windowSize <= 540 ? windowSize - 64 + 'px' : 476 + 'px'
+          "
+          *ngIf="selectedLevel == 'debutant' && !isGameStarting"
+        >
+          <div class="paper-cisors-images">
+            <div
+              class="img-wrapper img-wrapper--paper"
+              (click)="playerPlay('paper')"
+            >
+              <img src="../assets/icon-paper.svg" alt="" />
+            </div>
+            <div
+              class="img-wrapper img-wrapper--scissors"
+              (click)="playerPlay('scissors')"
+            >
+              <img src="../assets/icon-scissors.svg" alt="" />
+            </div>
+          </div>
+          <div class="rock-image">
+            <div
+              class="img-wrapper img-wrapper--rock"
+              (click)="playerPlay('rock')"
+            >
+              <img src="../assets/icon-rock.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <!--Panel Choice Legend-->
+        <div
+          class="panel-choices panel-choices-legent"
+          [style.width]="
+            windowSize <= 536 ? windowSize - 64 + 'px' : 472 + 'px'
+          "
+          *ngIf="selectedLevel == 'legend' && !isGameStarting"
+        >
+          <div class="scissors-image">
+            <div
+              class="img-wrapper img-wrapper--scissors"
+              (click)="playerPlay('scissors')"
+            >
+              <img src="../assets/icon-scissors.svg" alt="" />
+            </div>
+          </div>
+          <div class="spock-paper-images">
+            <div
+              class="img-wrapper img-wrapper--spock"
+              (click)="playerPlay('spock')"
+            >
+              <img src="../assets/icon-spock.svg" alt="" />
+            </div>
+            <div
+              class="img-wrapper img-wrapper--paper"
+              (click)="playerPlay('paper')"
+            >
+              <img src="../assets/icon-paper.svg" alt="" />
+            </div>
+          </div>
+          <div class="legard-rock-images">
+            <div
+              class="img-wrapper img-wrapper--lizard"
+              (click)="playerPlay('lizard')"
+            >
+              <img src="../assets/icon-lizard.svg" alt="" />
+            </div>
+            <div
+              class="img-wrapper img-wrapper--rock"
+              (click)="playerPlay('rock')"
+            >
+              <img src="../assets/icon-rock.svg" alt="" />
+            </div>
+          </div>
+        </div>
+        <!--RESULTAT-->
+        <div class="affiche-resultat" *ngIf="isGameStarting">
+          <div class="player">
+            <h4>Player</h4>
+            <div class="img-wrapper" [ngClass]="'img-wrapper--' + playerChoice">
+              <img [src]="imgUrlCPlayerChoice" alt="" />
+            </div>
+          </div>
+          <div class="resultat">
+            <span class="message" *ngIf="!isLoading">{{ messageResult }}</span>
+            <span class="message" *ngIf="isLoading">???</span>
+            <span class="btn-play-again" (click)="playAgain()">
+              play again
+            </span>
+          </div>
+          <div class="computer">
+            <h4>Computer</h4>
+            <div class="loading-animation" *ngIf="isLoading">
+              <i class="bi bi-arrow-clockwise"></i>
+            </div>
+            <div
+              class="img-wrapper"
+              [ngClass]="'img-wrapper--' + computerChoice"
+              *ngIf="!isLoading"
+            >
+              <img [src]="imgUrlComputerChoice" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--level-rules-container-->
+    <div class="level-rules-container">
+      <div class="level-container">
+        <ul *ngIf="showMenuLevels">
+          <li (click)="hndleSelectedLevel('debutant')">Debutant</li>
+          <li (click)="hndleSelectedLevel('legend')">Legend</li>
+        </ul>
+        <span class="btn-toggle" (click)="handleToggleMenuLevels()"
+          >Levels</span
+        >
+      </div>
+      <div class="rules-container">
+        <span class="btn-toggle" (click)="handleToggleModal()">Rules</span>
+        <!--Modal-->
+        <div class="modal" *ngIf="showModal">
+          <div class="modal__content">
+            <span class="btn-close-modale" (click)="handleToggleModal()"
+              >&times;</span
+            >
+            <h1 class="modal-title">Roules</h1>
+            <div class="rule-image"><img [src]="urlImageRule" alt="" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
