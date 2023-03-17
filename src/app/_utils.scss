@@ -3,7 +3,7 @@
 //##FUNCTION PIXELS TO REMS
 
 @function toRem($pixel) {
-  @return #{$pixel / 16}rem;
+  @return calc($pixel / 16) * 1rem;
 }
 //## Layout
 

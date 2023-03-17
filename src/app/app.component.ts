@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
   isGameStarting: boolean = false;
 
   selectedLevel: string = 'debutant';
-  urlImageRule: string = '../assets/image-rules.svg';
-  urlImageLogo: string = '../assets/logo.svg';
+  urlImageRule: string = '/assets/image-rules.svg';
+  urlImageLogo: string = '/assets/logo.svg';
 
   windowSize!: number;
 
