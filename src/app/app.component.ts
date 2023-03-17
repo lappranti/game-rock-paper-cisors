@@ -40,14 +40,14 @@ export class AppComponent implements OnInit {
     this.windowSize = window.innerWidth;
     this.getWindowSize();
     this.choices = this.choicesDebutant;
+    this.initializeScore();
+  }
 
-    if (!localStorage.getItem('scoreRockPaperScissors')) {
-      localStorage.setItem('scoreRockPaperScissors', '12');
-    } else {
-      this.score = +JSON.parse(
-        localStorage.getItem('scoreRockPaperScissors') || '12'
-      );
-    }
+  initializeScore() {
+    localStorage.setItem('scoreRockPaperScissors', '0');
+    this.score = +JSON.parse(
+      localStorage.getItem('scoreRockPaperScissors') || '0'
+    );
   }
 
   getWindowSize() {
