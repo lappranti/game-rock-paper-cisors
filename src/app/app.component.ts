@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   showMenuLevels: boolean = false;
@@ -12,8 +12,8 @@ export class AppComponent implements OnInit {
   isGameStarting: boolean = false;
 
   selectedLevel: string = 'debutant';
-  urlImageRule: string = '/assets/image-rules.svg';
-  urlImageLogo: string = '/assets/logo.svg';
+  urlImageRule: string = './assets/image-rules.svg';
+  urlImageLogo: string = './assets/logo.svg';
 
   windowSize!: number;
 
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     'paper',
     'scissors',
     'lizard',
-    'spock',
+    'spock'
   ];
   choices!: Array<string>;
 
@@ -71,13 +71,13 @@ export class AppComponent implements OnInit {
   playerPlay(choix: string) {
     this.isGameStarting = !this.isGameStarting;
     this.playerChoice = choix;
-    this.imgUrlCPlayerChoice = `../assets/icon-${this.playerChoice}.svg`;
+    this.imgUrlCPlayerChoice = `./assets/icon-${this.playerChoice}.svg`;
 
     this.computerPlay();
 
     setTimeout(() => {
       this.playRound();
-      this.imgUrlComputerChoice = `../assets/icon-${this.computerChoice}.svg`;
+      this.imgUrlComputerChoice = `./assets/icon-${this.computerChoice}.svg`;
     }, 2000);
   }
 
@@ -124,12 +124,12 @@ export class AppComponent implements OnInit {
   hndleSelectedLevel(level: string) {
     this.selectedLevel = level;
     if (this.selectedLevel === 'debutant') {
-      this.urlImageRule = '../assets/image-rules.svg';
-      this.urlImageLogo = '../assets/logo.svg';
+      this.urlImageRule = './assets/image-rules.svg';
+      this.urlImageLogo = './assets/logo.svg';
       this.choices = this.choicesDebutant;
     } else {
-      this.urlImageRule = '../assets/image-rules-bonus.svg';
-      this.urlImageLogo = '../assets/logo-bonus.svg';
+      this.urlImageRule = './assets/image-rules-bonus.svg';
+      this.urlImageLogo = './assets/logo-bonus.svg';
       this.choices = this.choicesLegend;
     }
     this.showMenuLevels = !this.showMenuLevels;
